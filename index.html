@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoria Viva | Yonier Quiceno</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#f9fbf9',
+                            accent: '#b8860b', /* Dorado oscuro / tierra */
+                            primary: '#2e4a31', /* Verde bosque profundo */
+                            secondary: '#4a7c59', /* Verde medio */
+                            dark: '#1a2a1c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Clases para animaciones al hacer scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Overlay del Hero */
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26, 42, 28, 0.9) 0%, rgba(46, 74, 49, 0.7) 100%);
+        }
+        /* Estilos para el contenedor de videos */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            background-color: #000;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* Sistema de Pestañas */
+        .tab-content {
+            display: none;
+            animation: fadeEffect 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeEffect {
+            from {opacity: 0; transform: translateY(10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-gray-800 font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-brand-dark/95 backdrop-blur shadow-lg py-4 px-6 md:px-12 flex justify-between items-center" id="navbar">
+        <div class="text-white font-serif font-bold text-lg md:text-xl flex items-center">
+            <i class="fa-solid fa-leaf text-brand-accent mr-2"></i> Memoria Viva
+        </div>
+        <div class="hidden md:flex space-x-6 text-sm font-semibold text-gray-200">
+            <a href="#introduccion" class="hover:text-brand-accent transition">Introducción</a>
+            <a href="#testimonios" class="hover:text-brand-accent transition">Testimonios</a>
+            <a href="#analisis" class="hover:text-brand-accent transition">Análisis</a>
+            <a href="#reflexion" class="hover:text-brand-accent transition">Reflexión Final</a>
+        </div>
+        <!-- Botón móvil -->
+        <div class="md:hidden text-white cursor-pointer">
+            <i class="fa-solid fa-bars text-xl"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Imagen de montañas colombianas -->
+            <img src="https://images.unsplash.com/photo-1583095125964-b8166bc2fb5c?q=80&w=1920&auto=format&fit=crop" alt="Paisaje de montañas" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto reveal">
+            <p class="text-brand-accent font-bold tracking-widest uppercase text-sm mb-4 border-b border-brand-accent/30 pb-2 inline-block">Evidencia de Aprendizaje 2</p>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                Memoria Viva:<br><span class="text-3xl md:text-5xl font-light italic">Explorando nuestro pasado reciente</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 font-light mb-10 max-w-3xl mx-auto">
+                Un recorrido por Pensilvania, Arboleda y La Iguana para comprender el conflicto, sanar las heridas y construir la paz en nuestro territorio.
+            </p>
+            <a href="#testimonios" class="inline-flex items-center justify-center px-8 py-3 text-base font-bold text-brand-dark bg-white hover:bg-gray-100 rounded-full transition-all shadow-xl hover:-translate-y-1">
+                Ver Investigación <i class="fa-solid fa-arrow-down ml-2 text-brand-secondary"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- 1. Introducción -->
+    <section id="introduccion" class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 reveal">
+            <div class="md:w-1/2">
+                <!-- Imagen representativa de campo/café -->
+                <img src="https://images.unsplash.com/photo-1495908333425-29a1e0918c5f?q=80&w=800&auto=format&fit=crop" alt="Trabajo en el campo" class="rounded-2xl shadow-xl w-full object-cover aspect-square" />
+            </div>
+            <div class="md:w-1/2">
+                <div class="flex items-center gap-3 mb-4 text-brand-primary">
+                    <i class="fa-solid fa-map-location-dot text-2xl"></i>
+                    <h3 class="font-bold uppercase tracking-widest text-sm text-brand-accent">El Territorio</h3>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-6">Bienvenidos a este espacio de reflexión</h2>
+                <div class="prose text-gray-600 leading-relaxed">
+                    <p class="mb-4">
+                        Hola a todos. Mi nombre es <strong>Yonier Alexis Quiceno</strong>, estudiante de Ingeniería de Software y Datos en la IU Digital de Antioquia. 
+                    </p>
+                    <p class="mb-4">
+                        Para hacer este ejercicio más dinámico, he diseñado esta aplicación web que documenta y complementa la investigación. Viajaremos al Oriente de Caldas, específicamente a <strong>Pensilvania, al corregimiento de Arboleda y a la Vereda La Iguana</strong>.
+                    </p>
+                    <p>
+                        Nuestro objetivo es escuchar las voces de quienes vivieron la guerra en carne propia, para entender no solo el dolor, sino la resistencia de nuestra gente, y así, responder a preguntas fundamentales sobre nuestro pasado reciente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Sección: Testimonios (Sin Guion) -->
+    <section id="testimonios" class="py-20 px-6 md:px-12 bg-brand-light">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-accent font-bold tracking-widest uppercase text-sm mb-2 block">Documentación de la experiencia</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-primary mb-4">Voces del Territorio</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">No podemos quedarnos solo en las cifras; debemos ir a la memoria viva. La siguiente recolección de testimonios nos permite acercarnos a las vivencias reales del conflicto y a las perspectivas de construcción de paz en nuestra comunidad.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Testimonio 1 -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden reveal flex flex-col hover:shadow-xl transition-shadow">
+                    <div class="p-6 pb-0 flex-grow">
+                        <span class="text-xs font-bold uppercase text-brand-primary bg-brand-light px-2 py-1 rounded inline-block mb-3">Testimonio 1</span>
+                        <h3 class="text-xl font-bold text-brand-dark mb-1">Paula Andrea Silva</h3>
+                        <p class="text-sm font-semibold text-brand-secondary mb-4">¿Qué sucedió y cuáles fueron las causas?</p>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-4">Relata cómo la tranquilidad agrícola de Arboleda se quebró con la toma guerrillera en el año 2000. Su testimonio evidencia que las causas van más allá de la presencia de los grupos armados, señalando el abandono histórico del Estado como un factor estructural crítico.</p>
+                    </div>
+                    <div class="p-6 pt-4">
+                        <div class="video-wrapper mb-3">
+                            <!-- Uso de youtube-nocookie para evitar bloqueos por privacidad/cookies -->
+                            <iframe src="https://www.youtube-nocookie.com/embed/XCRHCAGwLgc?rel=0" title="Entrevista Paula" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="text-center">
+                            <a href="https://youtu.be/XCRHCAGwLgc" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline bg-blue-50 px-3 py-2 rounded-full transition">
+                                <i class="fa-brands fa-youtube mr-2 text-red-600 text-sm"></i> Ver en YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden reveal delay-100 flex flex-col hover:shadow-xl transition-shadow">
+                    <div class="p-6 pb-0 flex-grow">
+                        <span class="text-xs font-bold uppercase text-brand-primary bg-brand-light px-2 py-1 rounded inline-block mb-3">Testimonio 2</span>
+                        <h3 class="text-xl font-bold text-brand-dark mb-1">Habitante La Iguana</h3>
+                        <p class="text-sm font-semibold text-brand-secondary mb-4">Dinámicas del conflicto y resistencia</p>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-4">Un crudo relato sobre la cohabitación forzada con actores armados y la imposición de cultivos ilícitos. Destaca el impacto de perder la tranquilidad rural, el miedo constante, y resalta el valor del perdón genuino para comenzar a sanar en el territorio.</p>
+                    </div>
+                    <div class="p-6 pt-4">
+                        <div class="video-wrapper mb-3">
+                            <iframe src="https://www.youtube-nocookie.com/embed/6wgwxMMPZhI?rel=0" title="Entrevista La Iguana" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="text-center">
+                            <a href="https://youtu.be/6wgwxMMPZhI" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline bg-blue-50 px-3 py-2 rounded-full transition">
+                                <i class="fa-brands fa-youtube mr-2 text-red-600 text-sm"></i> Ver en YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden reveal delay-200 flex flex-col hover:shadow-xl transition-shadow">
+                    <div class="p-6 pb-0 flex-grow">
+                        <span class="text-xs font-bold uppercase text-brand-primary bg-brand-light px-2 py-1 rounded inline-block mb-3">Testimonio 3</span>
+                        <h3 class="text-xl font-bold text-brand-dark mb-1">Visión Joven</h3>
+                        <p class="text-sm font-semibold text-brand-secondary mb-4">Responsables y No Repetición</p>
+                        <p class="text-sm text-gray-700 leading-relaxed mb-4">Una perspectiva crítica sobre cómo la violencia dejó de asombrar y se normalizó. Propone que la verdadera no repetición y reparación no es solo económica, sino que exige educación, presencia del estado, oportunidades y conocer la verdad.</p>
+                    </div>
+                    <div class="p-6 pt-4">
+                        <div class="video-wrapper mb-3">
+                            <iframe src="https://www.youtube-nocookie.com/embed/Do1YedX_BOc?rel=0" title="Entrevista Joven" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="text-center">
+                            <a href="https://youtu.be/Do1YedX_BOc" target="_blank" class="inline-flex items-center text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline bg-blue-50 px-3 py-2 rounded-full transition">
+                                <i class="fa-brands fa-youtube mr-2 text-red-600 text-sm"></i> Ver en YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Análisis Interactivo (Pestañas) -->
+    <section id="analisis" class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-5xl mx-auto reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">Análisis de la Construcción de Paz</h2>
+                <p class="text-gray-600">Explora las respuestas teóricas a los interrogantes clave de nuestra investigación.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+                <button class="tab-btn active px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all bg-brand-primary text-white shadow-md" onclick="openTab(event, 'tab-norepeticion')">No Repetición</button>
+                <button class="tab-btn px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" onclick="openTab(event, 'tab-acuerdos')">Acuerdos de Paz</button>
+                <button class="tab-btn px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all bg-gray-100 text-gray-600 hover:bg-gray-200" onclick="openTab(event, 'tab-diaria')">Paz Diaria</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="bg-brand-light p-8 md:p-12 rounded-3xl border border-gray-200 shadow-inner">
+                
+                <!-- Tab 1 -->
+                <div id="tab-norepeticion" class="tab-content active">
+                    <h3 class="text-2xl font-serif font-bold text-brand-dark mb-6 border-b-2 border-brand-accent pb-2 inline-block">¿Cómo podemos contribuir a la no repetición del conflicto?</h3>
+                    <div class="space-y-4 text-gray-700 leading-relaxed text-justify">
+                        <p class="text-lg font-bold text-brand-primary mb-2">Con Verdad, justicia y reparación.</p>
+                        <p>Es necesario <strong>reconocer la necesidad de reconstruir la memoria histórica</strong> de cara a los procesos, dinámicas, hechos, actores, implicaciones y consecuencias que el conflicto armado ha tenido en la vida social, económica, cultural y política del país.</p>
+                        <p>Y que tal memoria sea de carácter público, socializada y apropiada en todos los escenarios educativos del país. Algo que debería ocurrir, pero que aún no ocurre como debería.</p>
+                    </div>
+                </div>
+
+                <!-- Tab 2 -->
+                <div id="tab-acuerdos" class="tab-content">
+                    <h3 class="text-2xl font-serif font-bold text-brand-dark mb-6 border-b-2 border-brand-accent pb-2 inline-block">El rol de los Acuerdos</h3>
+                    <div class="space-y-4 text-gray-700 leading-relaxed text-justify">
+                        <p>Garantizando también el cumplimiento de los <strong>Acuerdos de Paz de La Habana</strong> entre el Estado colombiano y las FARC-EP. Primero, porque los acuerdos se hacen sobre la base del cumplimiento de todas las partes, y las administraciones del Estado posteriores al acuerdo de paz no siempre han cumplido.</p>
+                        <p>Segundo, porque el acuerdo es uno de los más garantistas del mundo en términos de procesos de paz: cada punto intenta hacerle frente a problemas históricos del país que crearon o alimentan el conflicto.</p>
+                        <p>Entre ellos están la redistribución de la tierra, el reconocimiento de las víctimas, la participación política, la creación de instituciones como la <strong>Comisión de la Verdad, la JEP y la UBPD</strong>, el cese al fuego y la solución al problema de las drogas ilícitas.</p>
+                    </div>
+                </div>
+
+                <!-- Tab 3 -->
+                <div id="tab-diaria" class="tab-content">
+                    <h3 class="text-2xl font-serif font-bold text-brand-dark mb-6 border-b-2 border-brand-accent pb-2 inline-block">La Participación Ciudadana</h3>
+                    <div class="space-y-4 text-gray-700 leading-relaxed text-justify">
+                        <p>La paz también es posible participando políticamente: votando por proyectos, programas y agendas políticas municipales, departamentales y nacionales que integren la construcción de paz y la convivencia. Una forma de poner en la discusión pública la necesidad de transformar nuestros discursos y prácticas, que muchas veces tienden a ser guerreristas y violentas.</p>
+                        
+                        <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-md flex items-start mt-6">
+                            <i class="fa-solid fa-hands-holding-circle text-3xl text-brand-accent mr-4 mt-1"></i>
+                            <p class="text-gray-800 font-medium italic">
+                                "Y finalmente, desde el intento terco pero firme de transformar el espacio cuadrado que habitamos; es decir, aquellos lugares donde podemos tener influencia, injerencia y capacidad de decisión. La paz también es diaria: cuando decides dialogar en lugar de chocar. Si esas formas hubieran sido más pacíficas, probablemente no nos encontraríamos en un conflicto armado de más de 70 años..."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Reflexión Final -->
+    <section id="reflexion" class="py-24 px-6 md:px-12 bg-brand-dark text-white relative overflow-hidden">
+        <!-- Decoración de fondo -->
+        <i class="fa-solid fa-dove absolute text-white/5 text-[25rem] -right-16 -bottom-20 transform -rotate-12"></i>
+        
+        <div class="max-w-4xl mx-auto relative z-10 text-center reveal">
+            <span class="text-brand-accent font-bold tracking-widest uppercase text-sm mb-4 block">Reflexión Final</span>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold mb-10">La Importancia de la Memoria</h2>
+            
+            <div class="text-lg md:text-xl font-light leading-relaxed space-y-6 text-gray-200 text-left bg-black/20 p-8 md:p-12 rounded-3xl backdrop-blur-sm border border-white/10">
+                <p>
+                    La memoria es la posibilidad de comprender lo ocurrido, pero sobre todo de observar y entender las necesidades que dieron pie a los conflictos. También permite analizar qué medidas se implementaron y no funcionaron, cuáles fueron efectivas y qué aprendizajes dejaron.
+                </p>
+                <p>
+                    En ese sentido, la memoria también señala la importancia de pensar nuevas estrategias que se adapten a nuevos contextos, para construir convivencia y evitar la repetición de la violencia.
+                </p>
+                <p class="font-medium text-white border-l-4 border-brand-accent pl-6 py-4 bg-white/5 rounded-r-lg shadow-inner text-xl md:text-2xl mt-8">
+                    Pero fundamentalmente la memoria dignifica, esas historias de dolor de mas de 11 millones de víctimas que acumula el país, reconoce su experiencia, su sufrimiento y su humanidad, evitando que lo que les ocurrió sea olvidado, negado o reducido a simples cifras.
+                </p>
+            </div>
+            
+            <p class="mt-12 text-sm text-gray-400">
+                "Muchas gracias por acompañarnos en este recorrido por nuestra Memoria Viva."
+            </p>
+        </div>
+    </section>
+
+    <!-- Créditos Footer -->
+    <footer class="bg-[#0f1911] py-12 px-6 text-gray-400 text-sm">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center reveal">
+            <div>
+                <h3 class="text-white text-xl font-serif font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-graduation-cap text-brand-accent mr-2"></i> Créditos del Proyecto
+                </h3>
+                <ul class="space-y-2">
+                    <li><strong class="text-gray-300">Evidencia de Aprendizaje:</strong> EA2 Memoria viva: explorando nuestro pasado reciente</li>
+                    <li><strong class="text-gray-300">Estudiante:</strong> Yonier Alexis Quiceno Rodríguez</li>
+                    <li><strong class="text-gray-300">Programa:</strong> Ingeniería de Software y Datos</li>
+                    <li><strong class="text-gray-300">Institución:</strong> IU Digital de Antioquia</li>
+                    <li><strong class="text-gray-300">Asignatura:</strong> Cátedra IU Digital: Paz, Convivencia y Ética</li>
+                    <li><strong class="text-gray-300">Docente:</strong> Diego Fernando Téllez</li>
+                    <li><strong class="text-gray-300">Año:</strong> 2026</li>
+                </ul>
+            </div>
+            <div class="md:text-right">
+                <p class="mb-4 text-gray-500 italic">"Aplicación web interactiva desarrollada como apoyo a la sustentación argumentativa del conflicto y la memoria histórica."</p>
+                <div class="flex justify-start md:justify-end gap-4 mt-4">
+                    <span class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent hover:text-white transition cursor-pointer"><i class="fa-solid fa-code"></i></span>
+                    <span class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent hover:text-white transition cursor-pointer"><i class="fa-solid fa-book-open"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto mt-12 pt-6 border-t border-gray-800 text-center">
+            <p>&copy; 2026 Yonier Alexis Quiceno. Todos los derechos reservados. Uso académico.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para Interactividad -->
+    <script>
+        // Función para cambiar de pestañas en la sección Análisis
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Ocultar todos los contenidos
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            // Resetear estilos de todos los botones
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" bg-brand-primary text-white shadow-md active", " bg-gray-100 text-gray-600 hover:bg-gray-200");
+            }
+            
+            // Mostrar contenido actual y cambiar estilo del botón seleccionado
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.className = evt.currentTarget.className.replace("bg-gray-100 text-gray-600 hover:bg-gray-200", "bg-brand-primary text-white shadow-md active");
+        }
+
+        // Animación "Reveal" al hacer scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Cuándo debe aparecer el elemento (px)
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Llamada inicial para los elementos ya visibles en pantalla
+
+        // Cambio de estilo del Navbar al hacer scroll
+        window.addEventListener("scroll", function() {
+            var navbar = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("shadow-xl", "bg-brand-dark");
+                navbar.classList.remove("bg-brand-dark/95");
+            } else {
+                navbar.classList.remove("shadow-xl", "bg-brand-dark");
+                navbar.classList.add("bg-brand-dark/95");
+            }
+        });
+    </script>
+</body>
+</html>
