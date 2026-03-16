@@ -81,7 +81,7 @@
 <body class="bg-brand-light text-gray-800 font-sans antialiased">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 transition-all duration-300 bg-brand-dark/95 backdrop-blur shadow-lg py-4 px-6 md:px-12 flex justify-between items-center" id="navbar">
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-brand-dark/95 backdrop-blur shadow-lg py-4 px-6 md:px-12 flex flex-wrap justify-between items-center" id="navbar">
         <div class="text-white font-serif font-bold text-lg md:text-xl flex items-center">
             <i class="fa-solid fa-leaf text-brand-accent mr-2"></i> Memoria Viva
         </div>
@@ -92,8 +92,15 @@
             <a href="#reflexion" class="hover:text-brand-accent transition">Reflexión Final</a>
         </div>
         <!-- Botón móvil -->
-        <div class="md:hidden text-white cursor-pointer">
-            <i class="fa-solid fa-bars text-xl"></i>
+        <div class="md:hidden text-white cursor-pointer" id="mobile-btn">
+            <i id="mobile-icon" class="fa-solid fa-bars text-xl"></i>
+        </div>
+        <!-- Menú móvil (Desplegable) -->
+        <div class="hidden w-full md:hidden mt-4 flex-col space-y-4 text-center text-gray-200 font-semibold" id="mobile-menu">
+            <a href="#introduccion" class="mobile-link hover:text-brand-accent transition block border-t border-white/10 pt-4">Introducción</a>
+            <a href="#testimonios" class="mobile-link hover:text-brand-accent transition block">Testimonios</a>
+            <a href="#analisis" class="mobile-link hover:text-brand-accent transition block">Análisis</a>
+            <a href="#reflexion" class="mobile-link hover:text-brand-accent transition block pb-2">Reflexión Final</a>
         </div>
     </nav>
 
@@ -142,6 +149,25 @@
                         Nuestro objetivo es escuchar las voces de quienes vivieron la guerra en carne propia, para entender no solo el dolor, sino la resistencia de nuestra gente, y así, responder a preguntas fundamentales sobre nuestro pasado reciente.
                     </p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Video de Presentación de la Página -->
+        <div class="max-w-5xl mx-auto mt-20 reveal">
+            <div class="text-center mb-10">
+                <span class="text-brand-accent font-bold tracking-widest uppercase text-sm mb-2 block">Recorrido por la plataforma</span>
+                <h2 class="text-3xl font-serif font-bold text-brand-dark mb-4">Presentación del Proyecto</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Conoce de cerca la motivación, el propósito y un recorrido guiado por esta iniciativa digital a través de mi video de sustentación.</p>
+            </div>
+            <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube-nocookie.com/embed/dY5b3KhEscg?rel=0" title="Presentación del Proyecto" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <a href="https://youtu.be/dY5b3KhEscg" target="_blank" class="inline-flex items-center text-sm font-bold text-red-600 hover:text-red-800 hover:underline bg-red-50 px-4 py-2 rounded-full transition">
+                    <i class="fa-brands fa-youtube mr-2 text-lg"></i> Ver presentación en YouTube
+                </a>
             </div>
         </div>
     </section>
@@ -300,7 +326,15 @@
                 </p>
             </div>
             
-            <p class="mt-12 text-sm text-gray-400">
+            <!-- Link a la comisión de la verdad -->
+            <div class="mt-12 mb-10">
+                <p class="text-sm text-gray-400 mb-4 uppercase tracking-widest font-bold">Recursos Adicionales</p>
+                <a href="https://web.comisiondelaverdad.co/especiales/voces-para-convivencia/paz-se-construye-en-conjunto.html" target="_blank" class="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 text-sm md:text-base text-brand-dark bg-brand-accent hover:bg-yellow-500 font-bold rounded-full transition-all shadow-lg hover:-translate-y-1">
+                    <i class="fa-solid fa-book-open mr-3"></i> Paz se construye en conjunto (Comisión de la Verdad)
+                </a>
+            </div>
+
+            <p class="mt-8 text-sm text-gray-500 italic">
                 "Muchas gracias por acompañarnos en este recorrido por nuestra Memoria Viva."
             </p>
         </div>
@@ -385,6 +419,36 @@
                 navbar.classList.remove("shadow-xl", "bg-brand-dark");
                 navbar.classList.add("bg-brand-dark/95");
             }
+        });
+
+        // Toggle para Menú Móvil
+        const mobileBtn = document.getElementById('mobile-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileIcon = document.getElementById('mobile-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            
+            // Cambiar icono
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileIcon.classList.remove('fa-xmark');
+                mobileIcon.classList.add('fa-bars');
+            } else {
+                mobileIcon.classList.remove('fa-bars');
+                mobileIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                mobileIcon.classList.remove('fa-xmark');
+                mobileIcon.classList.add('fa-bars');
+            });
         });
     </script>
 </body>
